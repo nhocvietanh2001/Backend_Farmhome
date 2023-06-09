@@ -153,7 +153,7 @@ public class UserServiceImplement implements UserService, UserDetailsService {
         Pageable pageable = PageRequest.of(no, number);
         List<User> userList = userRepository.findAllUserPaging(pageable).stream().toList();
         Page<User> userPage = userRepository.findAllUserPaging(pageable);
-        return new PaginationDTO(userList, userPage.isFirst(), userPage.isLast(), userPage.getTotalPages(), userPage.getTotalElements(), userPage.getSize(), userPage.getNumber());
+        return new PaginationDTO(userList, userPage.isFirst(), userPage.isLast(), userPage.getTotalPages(), userPage.getTotalElements(), userPage.getSize(), userPage.getNumber(),"true", "");
     }
 
     @Override
@@ -227,7 +227,7 @@ public class UserServiceImplement implements UserService, UserDetailsService {
         Pageable pageable = PageRequest.of(no, limit);
         List<UserShowDTO> userList = userRepository.getAllMerchant(pageable).stream().map(item -> userMapper.mapToShow(item)).toList();
         Page<User> page = userRepository.getAllMerchant(pageable);
-        return new PaginationDTO(userList, page.isFirst(), page.isLast(), page.getTotalPages(), page.getTotalElements(), page.getSize(), page.getNumber());
+        return new PaginationDTO(userList, page.isFirst(), page.isLast(), page.getTotalPages(), page.getTotalElements(), page.getSize(), page.getNumber(),"true", "");
     }
 
     @Override
@@ -235,7 +235,7 @@ public class UserServiceImplement implements UserService, UserDetailsService {
         Pageable pageable = PageRequest.of(no, limit);
         List<UserShowDTO> userList = userRepository.getAllFarmer(pageable).stream().map(item -> userMapper.mapToShow(item)).toList();
         Page<User> page = userRepository.getAllFarmer(pageable);
-        return new PaginationDTO(userList, page.isFirst(), page.isLast(), page.getTotalPages(), page.getTotalElements(), page.getSize(), page.getNumber());
+        return new PaginationDTO(userList, page.isFirst(), page.isLast(), page.getTotalPages(), page.getTotalElements(), page.getSize(), page.getNumber(),"true", "");
     }
 
     @Override
@@ -243,7 +243,7 @@ public class UserServiceImplement implements UserService, UserDetailsService {
         Pageable pageable = PageRequest.of(no, limit);
         List<UserShowDTO> userList = userRepository.searchMerchantContaining(username, pageable).stream().map(item -> userMapper.mapToShow(item)).toList();
         Page<User> page = userRepository.searchMerchantContaining(username, pageable);
-        return new PaginationDTO(userList, page.isFirst(), page.isLast(), page.getTotalPages(), page.getTotalElements(), page.getSize(), page.getNumber());
+        return new PaginationDTO(userList, page.isFirst(), page.isLast(), page.getTotalPages(), page.getTotalElements(), page.getSize(), page.getNumber(),"true", "");
     }
 
     @Override
@@ -251,7 +251,7 @@ public class UserServiceImplement implements UserService, UserDetailsService {
         Pageable pageable = PageRequest.of(no, limit);
         List<UserShowDTO> userList = userRepository.searchFarmerContaining(username, pageable).stream().map(item -> userMapper.mapToShow(item)).toList();
         Page<User> page = userRepository.searchFarmerContaining(username, pageable);
-        return new PaginationDTO(userList, page.isFirst(), page.isLast(), page.getTotalPages(), page.getTotalElements(), page.getSize(), page.getNumber());
+        return new PaginationDTO(userList, page.isFirst(), page.isLast(), page.getTotalPages(), page.getTotalElements(), page.getSize(), page.getNumber(),"true", "");
     }
 
     @Override

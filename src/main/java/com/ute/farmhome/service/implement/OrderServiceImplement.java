@@ -73,7 +73,7 @@ public class OrderServiceImplement implements OrderService {
         Pageable pageable = PageRequest.of(no, limit);
         List<?> listOrder = orderRepository.findByMerchantId(id, pageable).stream().map(item -> orderMapper.map(item)).toList();
         Page<Order> page = orderRepository.findByMerchantId(id, pageable);
-        return new PaginationDTO(listOrder, page.isFirst(), page.isLast(), page.getTotalPages(), page.getTotalElements(), page.getSize(), page.getNumber());
+        return new PaginationDTO(listOrder, page.isFirst(), page.isLast(), page.getTotalPages(), page.getTotalElements(), page.getSize(), page.getNumber(),"true", "");
     }
 
     @Override
@@ -81,7 +81,7 @@ public class OrderServiceImplement implements OrderService {
         Pageable pageable = PageRequest.of(no, limit);
         List<?> listOrder = orderRepository.findByFarmerId(id, pageable).stream().map(item -> orderMapper.map(item)).toList();
         Page<Order> page = orderRepository.findByFarmerId(id, pageable);
-        return new PaginationDTO(listOrder, page.isFirst(), page.isLast(), page.getTotalPages(), page.getTotalElements(), page.getSize(), page.getNumber());
+        return new PaginationDTO(listOrder, page.isFirst(), page.isLast(), page.getTotalPages(), page.getTotalElements(), page.getSize(), page.getNumber(),"true", "");
     }
 
     @Override

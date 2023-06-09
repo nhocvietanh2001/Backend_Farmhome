@@ -42,6 +42,8 @@ public class OrderMapperImplement implements OrderMapper {
         if (entity.getDeliveryLocation() != null) {
             orderDTO.setDeliveryLocation(locationMapper.map(entity.getDeliveryLocation()));
         }
+        orderDTO.setSuccess("true");
+        orderDTO.setMessage("");
         return orderDTO;
     }
 

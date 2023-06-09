@@ -48,7 +48,7 @@ public class NewsServiceImplement implements NewsService {
         Pageable pageable = PageRequest.of(no, limit);
         List<News> listNews= newsRepository.findAllPaging(pageable).stream().toList();
         Page<News> page = newsRepository.findAllPaging(pageable);
-        return new PaginationDTO(listNews, page.isFirst(), page.isLast(), page.getTotalPages(), page.getTotalElements(), page.getSize(), page.getNumber());
+        return new PaginationDTO(listNews, page.isFirst(), page.isLast(), page.getTotalPages(), page.getTotalElements(), page.getSize(), page.getNumber(),"true", "");
     }
 
     @Override

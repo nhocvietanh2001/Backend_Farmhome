@@ -24,4 +24,6 @@ public class HistoryDTO {
     String date;
     Boolean transport;
     LocationDTO deliveryLocation;
+    String success;
+    String message;
 }

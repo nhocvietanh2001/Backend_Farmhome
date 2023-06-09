@@ -79,6 +79,8 @@ public class UserMapperImplement implements UserMapper {
         dto.setLocation(user.getLocation());
         dto.setCreateDate(user.getCreateDate());
         dto.setStatus(user.getStatus());
+        dto.setSuccess("true");
+        dto.setMessage("");
         return dto;
     }
 

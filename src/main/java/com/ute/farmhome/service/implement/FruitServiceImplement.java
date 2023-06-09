@@ -62,7 +62,7 @@ public class FruitServiceImplement implements FruitService {
 			}
 		}).toList();
 		Page<Fruit> page = fruitRepository.findAllFruit(pageRequest);
-		return new PaginationDTO(fruits, page.isFirst(), page.isLast(), page.getTotalPages(), page.getTotalElements(), page.getSize(), page.getNumber());
+		return new PaginationDTO(fruits, page.isFirst(), page.isLast(), page.getTotalPages(), page.getTotalElements(), page.getSize(), page.getNumber(),"true", "");
 	}
 
 	@Override
@@ -81,7 +81,8 @@ public class FruitServiceImplement implements FruitService {
 
 	@Override
 	public FruitShowDTO getFruitById(int id) throws Exception {
-		return addSuggestPrice(fruitMapper.mapToShow(fruitRepository.findById(id).get()));
+		return addSuggestPrice(fruitMapper.mapToShow(fruitRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFound("fruit", "id", String.valueOf(id)))));
 	}
 	@Override
 	public FruitDTO readJson(String fruit, List<MultipartFile> images) {
@@ -131,7 +132,7 @@ public class FruitServiceImplement implements FruitService {
 			}
 		}).toList();
 		Page<Fruit> page = fruitRepository.searchByName(name, pageable);
-		return new PaginationDTO(listFruit, page.isFirst(), page.isLast(), page.getTotalPages(), page.getTotalElements(), page.getSize(), page.getNumber());
+		return new PaginationDTO(listFruit, page.isFirst(), page.isLast(), page.getTotalPages(), page.getTotalElements(), page.getSize(), page.getNumber(),"true", "");
 	}
 
 	@Override
@@ -181,7 +182,7 @@ public class FruitServiceImplement implements FruitService {
 			}
 		}).toList();
 		Page<?> page = fruitRepository.getFruitByUserId(id, pageable);
-		return new PaginationDTO(listFruit, page.isFirst(), page.isLast(), page.getTotalPages(), page.getTotalElements(), page.getSize(), page.getNumber());
+		return new PaginationDTO(listFruit, page.isFirst(), page.isLast(), page.getTotalPages(), page.getTotalElements(), page.getSize(), page.getNumber(),"true", "");
 	}
 
 	@Override
@@ -189,7 +190,7 @@ public class FruitServiceImplement implements FruitService {
 		Pageable pageable = PageRequest.of(no, limit);
 		List<?> listFruit = fruitRepository.filterFruit(name, amount, seasonList, popular, order, pageable).stream().map(item -> fruitMapper.mapToShow(item)).toList();
 		Page<Fruit> page = fruitRepository.filterFruit(name, amount, seasonList, popular, order, pageable);
-		return new PaginationDTO(listFruit, page.isFirst(), page.isLast(), page.getTotalPages(), page.getTotalElements(), page.getSize(), page.getNumber());
+		return new PaginationDTO(listFruit, page.isFirst(), page.isLast(), page.getTotalPages(), page.getTotalElements(), page.getSize(), page.getNumber(),"true", "");
 	}
 
 	@Override
@@ -203,7 +204,7 @@ public class FruitServiceImplement implements FruitService {
 		Pageable pageable = PageRequest.of(no, limit);
 		List<?> listFruit = fruitRepository.getFruitByCategory(category, pageable).stream().map(item -> fruitMapper.mapToShow(item)).toList();
 		Page<Fruit> page = fruitRepository.getFruitByCategory(category, pageable);
-		return new PaginationDTO(listFruit, page.isFirst(), page.isLast(), page.getTotalPages(), page.getTotalElements(), page.getSize(), page.getNumber());
+		return new PaginationDTO(listFruit, page.isFirst(), page.isLast(), page.getTotalPages(), page.getTotalElements(), page.getSize(), page.getNumber(),"true", "");
 	}
 
 	@Override

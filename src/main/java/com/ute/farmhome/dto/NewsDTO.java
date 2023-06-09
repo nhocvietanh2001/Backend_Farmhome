@@ -19,4 +19,6 @@ public class NewsDTO {
     MultipartFile imageBanner;
     MultipartFile imageContent;
     String category;
+    String success;
+    String message;
 }

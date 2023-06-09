@@ -77,6 +77,8 @@ public class FruitMapperImplement implements FruitMapper {
         dto.setSeason(fruit.getSeason());
         dto.setPopular(fruit.getPopular());
         dto.setCategory(fruit.getCategory() != null ? fruit.getCategory().getCategory() : null);
+        dto.setSuccess("true");
+        dto.setMessage("");
         return dto;
     }
 }

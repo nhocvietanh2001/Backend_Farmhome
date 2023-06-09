@@ -14,6 +14,8 @@ public class JwtResponse {
     private String lastName;
     private String avatar;
     private long idUser;
+    private String success = "True";
+    private String message = "";
     public JwtResponse(String accessToken, String refreshToken, String username, String firstName, String lastName, String avatar, long id) {
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;

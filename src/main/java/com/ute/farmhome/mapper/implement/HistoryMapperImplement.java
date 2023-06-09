@@ -40,6 +40,8 @@ public class HistoryMapperImplement implements HistoryMapper {
         if (entity.getDeliveryLocation()!=null) {
             historyDTO.setDeliveryLocation(locationMapper.map(entity.getDeliveryLocation()));
         }
+        historyDTO.setSuccess("true");
+        historyDTO.setMessage("");
         return historyDTO;
     }
 

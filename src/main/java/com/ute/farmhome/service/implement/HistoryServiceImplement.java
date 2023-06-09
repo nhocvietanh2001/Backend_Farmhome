@@ -34,7 +34,7 @@ public class HistoryServiceImplement implements HistoryService {
         Pageable pageable = PageRequest.of(no, limit);
         List<?> listHistory = historyRepository.findByFarmerOrMerchantId(id, pageable).stream().map(item -> historyMapper.map(item)).toList();
         Page<?> page = historyRepository.findByFarmerOrMerchantId(id, pageable);
-        return new PaginationDTO(listHistory, page.isFirst(), page.isLast(), page.getTotalPages(), page.getTotalElements(), page.getSize(), page.getNumber());
+        return new PaginationDTO(listHistory, page.isFirst(), page.isLast(), page.getTotalPages(), page.getTotalElements(), page.getSize(), page.getNumber(), "true", "");
     }
 
     @Override

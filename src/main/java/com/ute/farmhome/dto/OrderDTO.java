@@ -24,4 +24,6 @@ public class OrderDTO {
     StatusProduct status;
     LocationDTO deliveryLocation;
     String declineReason;
+    String success;
+    String message;
 }

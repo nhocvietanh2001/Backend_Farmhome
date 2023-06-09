@@ -29,4 +29,6 @@ public class FruitShowDTO {
     String season;
     String suggestPrice;
     String category;
+    String success;
+    String message;
 }

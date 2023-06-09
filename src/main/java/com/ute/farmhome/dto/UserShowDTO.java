@@ -28,4 +28,6 @@ public class UserShowDTO {
     private Location location;
     private LocalDate createDate;
     private StatusUser status;
+    String success;
+    String message;
 }

@@ -15,6 +15,6 @@ public class ResourceNotFound extends RuntimeException {
     }
     @Override
     public String toString() {
-        return String.format("%s not found with %s: %s", entity,field,value);
+        return String.format("%s not found", entity);
     }
 }

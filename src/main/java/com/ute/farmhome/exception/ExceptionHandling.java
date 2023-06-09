@@ -1,5 +1,6 @@
 package com.ute.farmhome.exception;
 
+import com.fasterxml.jackson.core.JsonParseException;
 import org.apache.tomcat.util.http.fileupload.impl.FileSizeLimitExceededException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,14 @@ import java.util.Map;
 @RestControllerAdvice
 public class ExceptionHandling {
 
+    @ExceptionHandler(value = JsonParseException.class)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    public ResponseEntity handlerJsonParseException(Exception e, HttpServletRequest request) {
+        HashMap<String, String> message = new HashMap<>();
+        message.put("success", "false");
+        message.put("message", "Your request has error JSON parse, check your commas and try again");
+        return ResponseEntity.badRequest().body(new HashMap<>());
+    }
     @ExceptionHandler(value = NoHandlerFoundException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ResponseEntity handlerNotFound(Exception e, HttpServletRequest request) {
@@ -36,6 +45,7 @@ public class ExceptionHandling {
     public ResponseEntity<?> handleAccessDenied(AccessDeniedException e) {
         Map<String, String> response = new HashMap<>();
         response.put("message", "Forbidden");
+        response.put("success", "false");
         response.put("error message", e.getMessage());
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
     }
@@ -50,6 +60,7 @@ public class ExceptionHandling {
         }
         map = e.getErrors();
         map.put("status code", "400");
+        map.put("success", "false");
         return ResponseEntity.badRequest().body(map);
     }
     @ExceptionHandler(AuthenticationException.class)
@@ -57,6 +68,7 @@ public class ExceptionHandling {
     public ResponseEntity<?> handleAuthenticationFail(AuthenticationException e) {
         Map<String, String> map = new HashMap<>();
         map.put("status code", "401");
+        map.put("success", "false");
         map.put("message", e.getMessage());
         return new ResponseEntity<>(map, HttpStatus.UNAUTHORIZED);
     }
@@ -65,6 +77,7 @@ public class ExceptionHandling {
     public ResponseEntity<?> handleRoleAuthenticationFail(RoleAuthenticationException e){
         Map<String, String> map = new HashMap<>();
         map.put("status code", "401");
+        map.put("success", "false");
         map.put("message", e.getMessage());
         return new ResponseEntity<>(map, HttpStatus.UNAUTHORIZED);
     }
@@ -73,6 +86,7 @@ public class ExceptionHandling {
     public ResponseEntity<?> handleFileSizeExceed(FileSizeLimitExceededException e) {
         Map<String, String> map = new HashMap<>();
         map.put("status code", "400");
+        map.put("success", "false");
         map.put ("message", e.getMessage());
         return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
     }
