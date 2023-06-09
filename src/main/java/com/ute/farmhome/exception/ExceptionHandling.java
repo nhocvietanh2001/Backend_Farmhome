@@ -26,7 +26,10 @@ public class ExceptionHandling {
     @ExceptionHandler(value = ResourceNotFound.class)
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     public ResponseEntity ResourceNotFound(ResourceNotFound ex, HttpServletRequest request) {
-        return ResponseEntity.badRequest().body(ex.toString());
+        HashMap<String, String> body = new HashMap<>();
+        body.put("success", "false");
+        body.put("message",ex.toString());
+        return ResponseEntity.ok().body(body);
     }
     @ExceptionHandler(AccessDeniedException.class)
     @ResponseStatus(value = HttpStatus.FORBIDDEN)

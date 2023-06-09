@@ -17,4 +17,5 @@ public class PaginationDTO {
     private long totalItems;
     private long sizeCurrentItems;
     private int numberOfCurrentPage;
+    //private String statusCode;
 }
