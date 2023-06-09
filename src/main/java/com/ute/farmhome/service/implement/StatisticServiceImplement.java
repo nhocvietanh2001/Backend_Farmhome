@@ -96,7 +96,7 @@ public class StatisticServiceImplement implements StatisticService {
         stat.setTotalMerchant((Long) data[0]);
         stat.setTotalFarmer((Long) data[1]);
         stat.setTotalUser((Long) data[0] + (Long) data[1]);
-        stat.setNewThisMonth(userRepository.getNewUserThisMonth());
+        stat.setNewThisMonth(userRepository.getNewUserThisMonth(LocalDate.now().getMonthValue()));
         return stat;
     }
 
